@@ -33,6 +33,8 @@ services:
         - mysql
       networks:
         - keycloak-network
+      command:
+        - "-Dkeycloak.profile.feature.upload_scripts=enabled"
 
 networks:
   keycloak-network:
