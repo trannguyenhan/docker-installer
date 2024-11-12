@@ -8,15 +8,17 @@ services:
   mysql:
       image: mysql:8.0.32
       volumes:
-        - mysql_data:/var/lib/mysql
+        - ./mysql_data:/var/lib/mysql
       environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_DATABASE: keycloak
         MYSQL_USER: keycloak
         MYSQL_PASSWORD: password
+      networks:
+        - keycloak-network
 
   keycloak:
-      image: jboss/keycloak
+      image: trannguyenhan/jboss-keycloak
       environment:
         DB_VENDOR: mysql
         DB_ADDR: mysql
@@ -24,10 +26,15 @@ services:
         DB_USER: keycloak
         DB_PASSWORD: password
         KEYCLOAK_USER: admin
-        KEYCLOAK_PASSWORD: Pa55w0rd
-        # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the MySQL JDBC driver documentation in order to use it.
-        #JDBC_PARAMS: "connectTimeout=30000"
+        KEYCLOAK_PASSWORD: password123
       ports:
-        - "18080:8080"
+        - "8180:8080"
       depends_on:
         - mysql
+      networks:
+        - keycloak-network
+
+networks:
+  keycloak-network:
+    name: keycloak-network
+    driver: bridge
