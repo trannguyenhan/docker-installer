@@ -27,9 +27,6 @@ services:
       - "5433:5432"
     secrets:
       - postgresql_password
-volumes:
-  odoo-web-data:
-  odoo-db-data:
 
 secrets:
   postgresql_password:
