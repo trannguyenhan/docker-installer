@@ -1,0 +1,20 @@
+version: '2'
+services:
+  odoo18:
+    image: odoo:18
+    user: root
+    ports:
+      - "8069:8069"
+      - "8072:8072" # live chat
+    tty: true
+    command: --
+#    environment:
+#      - HOST=118.70.49.45
+#      - USER=odoo
+#      - PASSWORD=Abcd@1234
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - ./odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+    restart: always            
+    
