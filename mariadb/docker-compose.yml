@@ -1,0 +1,12 @@
+
+services:
+
+  db:
+    image: mariadb:11.4
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: mariadb12345
+    ports:
+      - 9906:3306
+    volumes:
+      - ./datadir:/var/lib/mysql
