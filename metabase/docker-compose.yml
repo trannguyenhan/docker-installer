@@ -1,0 +1,12 @@
+version: '3'
+services:
+  metabase:
+    image: metabase/metabase:v0.54.9.x
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/metabase
+
+volumes:
+  data:
+
